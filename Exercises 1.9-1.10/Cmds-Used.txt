@@ -1,0 +1,7 @@
+
+docker cp command to copy the file. We can use quotes if the filename has spaces.
+
+docker cp ./additional.txt zen_rosalind:/usr/src/app/
+
+
+docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" .
