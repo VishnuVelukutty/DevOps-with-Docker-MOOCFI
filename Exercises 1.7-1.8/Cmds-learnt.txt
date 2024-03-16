@@ -1,5 +1,0 @@
-
-1. docker tag ubuntu:18.04 fav_distro:bionic
-2. docker diff zen_rosalind
-3. docker run hello-docker-additional ls
-
