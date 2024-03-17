@@ -1,1 +1,2 @@
-material-applications
+material-applications/
+$(pwd)/*/material-applications/

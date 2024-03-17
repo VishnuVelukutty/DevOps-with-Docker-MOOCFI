@@ -1,0 +1,6 @@
+FROM node:16.20.1-alpine
+WORKDIR frontend/
+COPY material-applications/example-frontend/ frontend/
+RUN npm init -y && npm install && npm install -g serve && npm run
+EXPOSE 5000
+CMD ["serve", "-s", "-l", "5000", "build"]
