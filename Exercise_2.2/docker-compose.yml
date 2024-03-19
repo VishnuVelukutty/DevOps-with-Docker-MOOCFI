@@ -1,9 +1,9 @@
 version: "3.8"
 services:
-  logger:
+  webserver:
     image: devopsdockeruh/simple-web-service
     build: .
-    volumes: 
-     - ./log_folder/logger.txt:/usr/src/app/text.log
     container_name: sws
-
+    ports:
+      - 8080:8080
+    command: server

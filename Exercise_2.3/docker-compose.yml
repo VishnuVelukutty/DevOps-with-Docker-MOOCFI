@@ -1,9 +1,13 @@
 version: "3.8"
 services:
-  logger:
-    image: devopsdockeruh/simple-web-service
+  frontend: fe
     build: .
-    volumes: 
-     - ./log_folder/logger.txt:/usr/src/app/text.log
-    container_name: sws
-
+    container_name: fe
+    ports: 
+     - 5000:5000
+  backend:
+    image: be
+    build: .
+    container_name: be
+    ports:
+     - 8080:8080
