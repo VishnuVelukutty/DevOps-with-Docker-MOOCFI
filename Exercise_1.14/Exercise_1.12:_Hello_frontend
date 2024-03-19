@@ -1,8 +1,0 @@
-FROM node:16.20.1-alpine
-WORKDIR frontend/
-# COPY material-applications/example-frontend/ frontend/
-COPY material-applications/example-frontend/ .
-ENV REACT_APP_BACKEND_URL http://localhost:8080/ping
-RUN npm init -y && npm install && npm install -g serve && npm run
-EXPOSE 5000
-CMD ["serve", "-s", "-l", "5000", "build"]

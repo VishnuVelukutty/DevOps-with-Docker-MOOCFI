@@ -1,3 +1,5 @@
 material-applications/
 $(pwd)/*/material-applications/
 $(pwd)/material-applications/
+material-applications/
+$(pwd)/*/example-*/
