@@ -1,3 +1,4 @@
+## Exercise 1.14: Environment
 ### SOLUTION - LIST OF COMMANDS  
 - docker build -f  <filename> . -t fe
 - docker build -f <filename> . -t be

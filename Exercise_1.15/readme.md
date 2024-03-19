@@ -1,4 +1,5 @@
-# Prerequisites  
+## Exercise 1.15: Homework 
+### Prerequisites  
 Install [node](https://nodejs.org/en/download/). 
 Example node install instructions for LTS node:
 ```
@@ -7,7 +8,7 @@ sudo apt install -y nodejs
 ```
 Check your install with `node -v && npm -v`
 
-# Starting in production mode
+## Starting in production mode
 
 First you need to build the static files with `npm run build`
 
@@ -21,7 +22,7 @@ Use npm package called serve to serve the project in port 5000:
 
 Test that the project is running by going to <http://localhost:3000>  
 
-# Running locally
+## Running locally
 - Clone the project in folder using `git clone`.  
 - Move inside the folder using `cd frontend`.
 - Run the following commands 
@@ -29,11 +30,11 @@ Test that the project is running by going to <http://localhost:3000>
     - `npm install` to install al the required packages mentioned in the package.json.
     - `npm start` to run locally and Test that the project is running by going to <http://localhost:3000>.
 
-# Running the Dockerized version
+## Running the Dockerized version
 - Build the image by running `docker build . -t fe-demo`
 - Run the docker image `docker run -p 3000:3000 fe-demo` 
 
-# Pushing the image to docker repo
+## Pushing the image to docker repo
 - Tag the image by running the command `docker tag fe-demo:latest vishnuve/devops_for_docker:fe-demo`
 - Login into Docker and push `docker push vishnuve/devops_for_docker:fe-demo`  
 
