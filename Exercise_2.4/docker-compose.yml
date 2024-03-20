@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  frontend: 
+    image: fe
+    build: .
+    container_name: fe
+    ports: 
+     - 5000:5000
+  cachedb: 
+    image: redis:latest
+    build: .
+    container_name: cachedb
+    restart: unless-stopped
+  backend:
+    image: be
+    build: .
+    container_name: be
+    environment:
+     REDIS_HOST: cachedb
+    ports:
+     - 8080:8080
