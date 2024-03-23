@@ -1,2 +1,1 @@
-### Check working 
-- `docker compose up`
+> NOTE : If the order of starting service is not proper it will result some service exiting so either add `depends_on` or order it in sequence 

@@ -1,2 +1,1 @@
-### Check working 
-- `docker compose up`
+> NOTE : The last line refers for persistence

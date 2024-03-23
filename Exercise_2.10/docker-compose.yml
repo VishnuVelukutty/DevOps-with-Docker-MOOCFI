@@ -1,10 +1,15 @@
 version: "3.8"
 services:
-  frontend: 
-    image: fe:latest
-    container_name: fe
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Exercise_1.14:_Hello_frontend
+    container_name: fe-2.9
     environment:
      REQUEST_ORIGIN: http://localhost:80
+    networks:
+     - internal_network
+
   database:
     image: postgres:alpine3.18
     restart: unless-stopped
@@ -15,10 +20,16 @@ services:
      POSTGRES_DATABASE: postgres
     volumes: 
      - ./postgres-folder:/var/lib/postgresql/data
+    networks:
+     - internal_network
+
   cachedb: 
     image: redis:latest
     container_name: cachedb
     restart: unless-stopped
+    networks:
+     - internal_network
+
   revproxy:
     image: nginx:stable-alpine3.17-slim
     volumes: 
@@ -27,9 +38,14 @@ services:
      - 80:80
     depends_on:
       - backend
+    networks:
+     - internal_network
+
   backend:
-    image: be:latest
-    container_name: be
+    build:
+      context: .
+      dockerfile: ./Exercise_1.14:_Hello_backend    
+    container_name: be-2.9
     environment:
      REDIS_HOST: cachedb
      POSTGRES_HOST: database
@@ -37,3 +53,13 @@ services:
     depends_on:
      - cachedb
      - database
+    networks:
+     - internal_network
+
+
+volumes:
+  postgres-folder:
+
+networks:
+  internal_network:
+    driver: bridge

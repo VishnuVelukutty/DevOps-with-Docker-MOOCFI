@@ -1,8 +1,7 @@
 version: "3.8"
 services:
   frontend: 
-    image: fe
-    build: .
+    image: fe:latest
     container_name: fe
     ports: 
      - 5000:5000
@@ -10,22 +9,27 @@ services:
     image: postgres:alpine3.18
     restart: unless-stopped
     container_name: database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
     volumes: 
-     - /postgres-folder:/dev/shm
+     - ./postgres-folder:/var/lib/postgresql/data
   cachedb: 
     image: redis:latest
-    build: .
     container_name: cachedb
     restart: unless-stopped
   backend:
-    image: be
-    build: .
+    image: be:latest
     container_name: be
     environment:
      REDIS_HOST: cachedb
      POSTGRES_HOST: database
-     POSTGRES_USER: postgres
-     POSTGRES_PASSWORD: postgres
-     POSTGRES_DATABASE: postgres
     ports:
      - 8080:8080
+    depends_on:
+     - cachedb
+     - database
+# persistance
+volumes:
+  postgres-folder:

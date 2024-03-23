@@ -1,0 +1,52 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: mysql_container
+    command:  --mysqlx=0   # Add this line to disable X Plugin
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: CourseDetail
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    ports:
+      - '3306:3306'
+      - '33060:33060'
+    networks:
+      - custom-network
+  backend:
+    build:
+      context: .
+      dockerfile: ./Exercise_2.11/Dockerfile-be
+    container_name: spring-be
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://db:3306/CourseDetail'
+      spring.sql.init.data-locations: classpath:script.sql
+      MYSQL_HOST: db
+      start_period: 30s
+    restart: on-failure
+    ports:
+      - '8080:8080'
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - custom-network
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Exercise_2.11/Dockerfile-be
+    container_name: react-fe
+    ports:
+      - '3000:3000'
+    networks:
+      - custom-network
+    environment:
+      - REACT_APP_API_URL=http://backend:8080/api
+networks:
+  custom-network:
+    driver: bridge

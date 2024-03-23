@@ -1,0 +1,7 @@
+FROM golang:alpine3.19
+WORKDIR backend/
+COPY example-backend/ .
+ENV REQUEST_ORIGIN=http://localhost:80/
+RUN go build
+EXPOSE 8080
+CMD ["./server"]
