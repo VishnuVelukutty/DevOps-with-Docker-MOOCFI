@@ -7,6 +7,7 @@ on:
       - part-3
     paths:
      - 'Exercise_3.1/**'
+     - '.github/workflows/**'
 
 # Job called build runs-on ubuntu-latest
 jobs:
@@ -23,7 +24,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    # Builds devopsdockeruh/docker-hy.github.io
+    # Builds 
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
