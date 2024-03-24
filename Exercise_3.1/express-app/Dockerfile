@@ -1,7 +1,4 @@
-FROM node:16-alpine
-
-# else wont work 
-WORKDIR .
+FROM node:16
 
 COPY . .
 
