@@ -31,4 +31,4 @@ jobs:
         push: true
         tags: vishnuve/devops_for_docker:express
         context: Exercise_3.1  # Specify the context directory where Dockerfile is located
-        file: Exercise_3.1/Dockerfile  # Specify the path to the Dockerfile
+        file: /Exercise_3.1/Dockerfile  # Specify the path to the Dockerfile
