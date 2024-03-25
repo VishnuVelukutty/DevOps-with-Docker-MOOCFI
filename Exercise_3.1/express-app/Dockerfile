@@ -1,9 +1,9 @@
 FROM node:16
 
-WORKDIR .
+WORKDIR /frontend
 
-COPY . .
+COPY . /frontend
 
-RUN npm init -y && npm install
+RUN npm install
 
 CMD node index.js
