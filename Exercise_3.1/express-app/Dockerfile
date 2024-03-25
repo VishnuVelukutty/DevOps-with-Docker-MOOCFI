@@ -1,9 +1,6 @@
 FROM node:16
 
-WORKDIR /frontend
-
-COPY Exercise_3.1/express-app/package.json .
-COPY Exercise_3.1/express-app/index.js .
+COPY . .
 
 RUN npm install
 
