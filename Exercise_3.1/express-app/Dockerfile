@@ -2,8 +2,8 @@ FROM node:16
 
 WORKDIR /frontend
 
-COPY package.json .
-COPY index.js .
+COPY Exercise_3.1/express-app/package.json .
+COPY Exercise_3.1/express-app/index.js .
 
 RUN npm install
 
