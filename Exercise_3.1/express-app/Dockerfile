@@ -2,6 +2,6 @@ FROM node:16
 
 COPY . .
 
-RUN npm install
+RUN npm init -y && npm install
 
 CMD node index.js
