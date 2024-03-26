@@ -3,3 +3,4 @@ $(pwd)/*/material-applications/
 $(pwd)/material-applications/
 material-applications/
 /Exercise_*/example-*/
+Exercise_3.*/cred.env
