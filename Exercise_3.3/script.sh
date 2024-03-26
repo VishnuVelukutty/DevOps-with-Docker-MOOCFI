@@ -35,10 +35,3 @@ docker tag "$2" "$2:latest"
 # Push the Docker image to Docker Hub
 echo "Pushing Docker image to Docker Hub..."
 docker push "$2"
-
-# Clean up
-echo "Cleaning up..."
-cd ..
-rm -rf "$(basename "$1")"
-
-echo "Script completed successfully!"

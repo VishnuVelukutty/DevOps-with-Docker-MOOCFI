@@ -4,10 +4,8 @@ WORKDIR /usr/src/app
 
 RUN apk add --no-cache git
 
-COPY dockerize.sh dockerize.sh
+COPY script.sh .
 
-RUN chmod +x dockerize.sh
+RUN chmod +x script.sh
 
-ENTRYPOINT ["./dockerize.sh"]
-
-readme https://github.com/maxmynter/devopsDocker/blob/main/part3/ex3.4/dockerize.sh
+ENTRYPOINT ["./script.sh"]
