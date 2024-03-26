@@ -1,0 +1,19 @@
+FROM node:stretch-slim as build
+
+WORKDIR /frontend
+
+COPY example-frontend/ .
+
+RUN npm install && npm run build
+
+FROM alpine:latest
+
+WORKDIR /root/
+
+RUN apk add --update nodejs npm && npm install -g serve
+
+COPY --from=build ./frontend/build ./build
+
+CMD ["npx", "serve", "-s", "-l", "5000", "build"] 
+
+EXPOSE 5000

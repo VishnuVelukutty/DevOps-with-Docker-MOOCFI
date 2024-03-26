@@ -1,0 +1,17 @@
+FROM node:16.20.1-alpine
+WORKDIR frontend/
+COPY example-frontend/ .
+RUN npm init -y && npm install && npm install -g serve
+RUN npm run build
+EXPOSE 5000
+
+# create the appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# change the owner of current dir to appuser
+RUN chown appuser .
+
+# now we can change the user
+USER appuser
+
+CMD ["serve", "-s", "-l", "5000", "build"]

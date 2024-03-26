@@ -1,0 +1,16 @@
+FROM golang:alpine3.19
+WORKDIR backend/
+COPY material-applications/example-backend/ .
+RUN go build
+EXPOSE 8080
+
+# create the appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# change the owner of current dir to appuser
+RUN chown appuser .
+
+# now we can change the user
+USER appuser
+
+CMD ["./server"]

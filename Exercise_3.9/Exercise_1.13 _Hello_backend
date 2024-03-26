@@ -1,0 +1,17 @@
+FROM golang:alpine3.13 AS build
+
+WORKDIR /backend
+
+COPY example-backend/ .
+
+RUN go build
+
+FROM alpine:latest  
+
+WORKDIR /root/
+
+COPY --from=build ./backend/server ./server
+
+CMD ["./server"]  
+
+EXPOSE 8080

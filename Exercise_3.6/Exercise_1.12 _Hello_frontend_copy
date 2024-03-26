@@ -1,0 +1,26 @@
+FROM ubuntu:latest
+
+FROM node:16.20.1
+
+# Install necessary packages
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends npm 
+RUN rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /frontend
+
+# Copy the frontend files
+COPY example-frontend/ .
+
+# Install dependencies and build the frontend
+RUN npm init -y 
+RUN npm install 
+RUN npm install -g serve     
+RUN npm run build
+
+# Expose the port
+EXPOSE 5000
+
+# Command to run the application
+CMD ["serve", "-s", "-l", "5000", "build"]
